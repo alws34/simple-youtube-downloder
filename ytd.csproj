@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>YoutubeDownloader</AssemblyName>
+    <ApplicationIcon>youtubedownloader.ico</ApplicationIcon>
+    <Authors>alws34</Authors>
+    <Version>1.1.0</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageIcon>pngaaa.com-808842.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NReco.VideoConverter" Version="1.1.4" />
+    <PackageReference Include="VideoLibrary" Version="3.1.2" />
+    <PackageReference Include="Xabe.FFmpeg" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="pngaaa.com-808842.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
