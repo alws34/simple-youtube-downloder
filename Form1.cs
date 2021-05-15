@@ -2,7 +2,12 @@
 using System.Windows.Forms;
 using System.IO;
 using VideoLibrary;
+using Xabe.FFmpeg;
 using System.Text.RegularExpressions;
+using YoutubeExtractor;
+using Frapper;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ytd
 {
@@ -60,10 +65,13 @@ namespace ytd
                 using (var service = Client.For(YouTube.Default))
                 {
                     int items_count = listBox_Download_List.Items.Count;
+                    int total_items = items_count;
                     int current_item = 1;
                     progressBar.Maximum = items_count;
+
                     string folder;
                     string download_path = textBoxDownload_Location.Text;
+
                     if (!string.IsNullOrEmpty(download_path) && Directory.Exists(download_path))
                         folder = download_path;
                     else
@@ -74,18 +82,15 @@ namespace ytd
                         var video = service.GetVideo(URL);
                         progressBar.Value += 1;
                         string path = Path.Combine(folder, video.FullName);
-                        label_progress.Text = "item #" + current_item + " / " + items_count;
+                        label_progress.Text = "item #" + current_item + " / " + total_items;
                         current_item += 1;
-
                         File.WriteAllBytes(path, video.GetBytes()); //actual downloader
                         if (items_count == 0)
                         {
                             show_success("finished downloading all videos!\nyou can find them in: " + folder);
+                            reset();
                         }
                     }
-                    listBox_Download_List.Items.Clear();
-                    label_progress.Text = "";
-                    progressBar.Value = 0;
                 }
             }
             catch (DirectoryNotFoundException dnfe)
@@ -97,6 +102,14 @@ namespace ytd
                 show_error(ex.ToString());
             }
         }
+
+        private void reset()
+        {
+            listBox_Download_List.Items.Clear();
+            label_progress.Text = "";
+            progressBar.Value = 0;
+        }
+
         /*******************/
         /*******Events******/
         /*******************/
@@ -129,10 +142,6 @@ namespace ytd
             {
                 addDownloadLocation();
             }
-        }
-        private void btnOpenFolder_Click(object sender, EventArgs e)
-        {
-            //open download folder
         }
     }
 }

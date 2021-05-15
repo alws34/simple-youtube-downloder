@@ -36,13 +36,12 @@ namespace ytd
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.listBox_Download_List = new System.Windows.Forms.ListBox();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
             this.label_progress = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_Download
             // 
-            this.btn_Download.Location = new System.Drawing.Point(305, 336);
+            this.btn_Download.Location = new System.Drawing.Point(294, 336);
             this.btn_Download.Name = "btn_Download";
             this.btn_Download.Size = new System.Drawing.Size(129, 46);
             this.btn_Download.TabIndex = 1;
@@ -86,16 +85,6 @@ namespace ytd
             this.listBox_Download_List.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_Videos_To_Download_KeyDown);
             this.listBox_Download_List.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listBox_Download_List_MouseMove);
             // 
-            // btnOpenFolder
-            // 
-            this.btnOpenFolder.Location = new System.Drawing.Point(74, 336);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(83, 46);
-            this.btnOpenFolder.TabIndex = 7;
-            this.btnOpenFolder.Text = "Open Folder";
-            this.btnOpenFolder.UseVisualStyleBackColor = true;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
-            // 
             // label_progress
             // 
             this.label_progress.AutoSize = true;
@@ -111,9 +100,8 @@ namespace ytd
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(738, 474);
+            this.ClientSize = new System.Drawing.Size(738, 387);
             this.Controls.Add(this.label_progress);
-            this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.textBoxDownload_Location);
             this.Controls.Add(this.btn_Download);
@@ -132,7 +120,6 @@ namespace ytd
         private System.Windows.Forms.TextBox textBoxDownload_Location;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.ListBox listBox_Download_List;
-        private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.Label labelmp3convert;
         private System.Windows.Forms.Label label_progress;
     }
