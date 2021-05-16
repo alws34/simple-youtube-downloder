@@ -13,11 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Frapper" Version="1.0.5" />
-    <PackageReference Include="NReco.VideoConverter" Version="1.1.4" />
     <PackageReference Include="VideoLibrary" Version="3.1.2" />
-    <PackageReference Include="Xabe.FFmpeg" Version="4.4.1" />
-    <PackageReference Include="YoutubeExtractor" Version="0.10.11" />
+    <PackageReference Include="Xabe.FFmpeg" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

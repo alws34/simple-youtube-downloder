@@ -17,7 +17,7 @@ namespace ytd
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_YoutubeDownloader());
+            Application.Run(new frmMainWindow());
         }
     }
 }
