@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
+
 
 namespace ytd
 {
@@ -13,7 +15,9 @@ namespace ytd
             InitializeComponent();
         }
 
-
+        /*******************/
+        /******Methods******/
+        /*******************/
         private void addItemToconvertList()
         {
             string t = Clipboard.GetText();
@@ -34,7 +38,7 @@ namespace ytd
             }
         }
 
-        private void btnConvertToMp3_Click(object sender, EventArgs e) // start convertion
+        private void btnConvertToMp3_Click(object sender, EventArgs e) // start convertion //TODO
         {
             string output_location = textBoxoutput.Text;
             foreach (string item in listBox_ConvertTomp3.Items)
@@ -51,17 +55,19 @@ namespace ytd
                     FileStream file = File.Create(outputFile);
                     file.Close();
                 }
+                const char quote = '"';
+                string arguments = " -i " + quote + inputFile + quote + " -vn -f mp3 -ab 320k output " + quote + outputFile + quote;
+                arguments = arguments.Replace(@" -i \","-i ").Replace(@"mp4\","mp4").Replace(@"output \","output ").Replace(@"mp3\","mp3");//TODO
                 var ffmpegProcess = new Process();
                 ffmpegProcess.StartInfo.UseShellExecute = false;
                 ffmpegProcess.StartInfo.RedirectStandardInput = true;
                 ffmpegProcess.StartInfo.RedirectStandardOutput = true;
                 ffmpegProcess.StartInfo.RedirectStandardError = true;
                 ffmpegProcess.StartInfo.CreateNoWindow = true;
-                ffmpegProcess.StartInfo.FileName = @"C:\FFmpeg\bin";
-                ffmpegProcess.StartInfo.Arguments = "-i " + '"' + inputFile + '"' + " -vn -f mp3 -ab 320k output " + '"' + outputFile + '"';
+                ffmpegProcess.StartInfo.FileName = @"C:\FFmpeg\bin\ffmpeg.exe";
+                ffmpegProcess.StartInfo.Arguments = arguments;
                 ffmpegProcess.Start();
                 ffmpegProcess.StandardOutput.ReadToEnd();
-
                 ffmpegProcess.WaitForExit();
                 if (!ffmpegProcess.HasExited)
                 {
@@ -70,6 +76,10 @@ namespace ytd
             }
         }
 
+
+        /*******************/
+        /*******Events******/
+        /*******************/
         private void btnsaveto_Click(object sender, EventArgs e) //where to save mp3 files
         {
             if (string.IsNullOrEmpty(textBoxoutput.Text))
@@ -116,5 +126,10 @@ namespace ytd
                 addconvertLocation();
             }
         } // add save-to path with ctrl+v
+
+        private void btnEXIT_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }//exit button event
     }
 }

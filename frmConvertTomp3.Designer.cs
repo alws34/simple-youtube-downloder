@@ -35,6 +35,7 @@ namespace ytd
             this.labeloutput = new System.Windows.Forms.Label();
             this.textBoxoutput = new System.Windows.Forms.TextBox();
             this.listBox_ConvertTomp3 = new System.Windows.Forms.ListBox();
+            this.btnEXIT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnopenvideo
@@ -97,11 +98,22 @@ namespace ytd
             this.listBox_ConvertTomp3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_ConvertTomp3_KeyDown);
             this.listBox_ConvertTomp3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listBox_ConvertTomp3_MouseMove);
             // 
+            // btnEXIT
+            // 
+            this.btnEXIT.Location = new System.Drawing.Point(554, 34);
+            this.btnEXIT.Name = "btnEXIT";
+            this.btnEXIT.Size = new System.Drawing.Size(75, 23);
+            this.btnEXIT.TabIndex = 9;
+            this.btnEXIT.Text = "EXIT";
+            this.btnEXIT.UseVisualStyleBackColor = true;
+            this.btnEXIT.Click += new System.EventHandler(this.btnEXIT_Click);
+            // 
             // frmConvertTomp3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 442);
+            this.Controls.Add(this.btnEXIT);
             this.Controls.Add(this.listBox_ConvertTomp3);
             this.Controls.Add(this.textBoxoutput);
             this.Controls.Add(this.labeloutput);
@@ -124,5 +136,6 @@ namespace ytd
         private System.Windows.Forms.Label labeloutput;
         private System.Windows.Forms.TextBox textBoxoutput;
         private System.Windows.Forms.ListBox listBox_ConvertTomp3;
+        private System.Windows.Forms.Button btnEXIT;
     }
 }
