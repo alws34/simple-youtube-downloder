@@ -46,7 +46,11 @@ namespace ytd
 
                 var inputFile = item.Trim();
                 var outputFile = item + ".mp3";
-
+                if (!File.Exists(outputFile))
+                {
+                    FileStream file = File.Create(outputFile);
+                    file.Close();
+                }
                 var ffmpegProcess = new Process();
                 ffmpegProcess.StartInfo.UseShellExecute = false;
                 ffmpegProcess.StartInfo.RedirectStandardInput = true;
@@ -54,7 +58,7 @@ namespace ytd
                 ffmpegProcess.StartInfo.RedirectStandardError = true;
                 ffmpegProcess.StartInfo.CreateNoWindow = true;
                 ffmpegProcess.StartInfo.FileName = @"C:\FFmpeg\bin";
-                ffmpegProcess.StartInfo.Arguments = inputFile + " " + outputFile;
+                ffmpegProcess.StartInfo.Arguments = "-i " + '"' + inputFile + '"' + " -vn -f mp3 -ab 320k output " + '"' + outputFile + '"';
                 ffmpegProcess.Start();
                 ffmpegProcess.StandardOutput.ReadToEnd();
 
