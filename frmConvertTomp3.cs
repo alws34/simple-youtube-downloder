@@ -10,9 +10,11 @@ namespace ytd
     public partial class frmConvertTomp3 : Form
     {
         private string savemp3location;
-        public frmConvertTomp3()
+        Form mainform;
+        public frmConvertTomp3(Form mainfrm)
         {
             InitializeComponent();
+            mainform = mainfrm;
         }
 
         /*******************/
@@ -131,5 +133,11 @@ namespace ytd
         {
             this.Dispose();
         }//exit button event
+
+        private void frmConvertTomp3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mainform.Show();
+            Dispose();
+        }
     }
 }

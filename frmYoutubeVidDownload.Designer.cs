@@ -109,6 +109,7 @@ namespace ytd
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_YoutubeDownloader";
             this.Text = "Youtube Downloader";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_YoutubeDownloader_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

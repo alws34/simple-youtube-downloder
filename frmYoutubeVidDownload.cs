@@ -11,14 +11,16 @@ namespace ytd
         /*******************/
         /******Fields*******/
         /*******************/
-        string youtubeSTR = @"https://www.youtube.com/watch?v=";
+        private Form mainform;
+        private static readonly string youtubeSTR = @"https://www.youtube.com/watch?v=";
 
         /*******************/
         /***Constructors***/
         /*******************/
-        public frm_YoutubeDownloader()
+        public frm_YoutubeDownloader(Form mainfrm)
         {
             InitializeComponent();
+            mainform = mainfrm;//save reference of the main (hidden) form
         }
 
         /*******************/
@@ -39,8 +41,8 @@ namespace ytd
             MessageBox.Show(message, "Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         } //show success message
         private void addDownloadLocation()
-        {
-            Regex download_Path_regex = new Regex("[A - Za - z:^\\]{ 1}[A-Za - z]*");//TODO
+        { 
+            Regex download_Path_regex = new Regex(@"[A-Za-z]{1}:\\[\s\S\d]*");//accept only paths eg: c:\eg\eg\eg 
             string t = Clipboard.GetText();
             Match match = download_Path_regex.Match(t);
             if (t.Contains(youtubeSTR) == false && match.Success)
@@ -91,13 +93,14 @@ namespace ytd
             {
                 show_error(ex.ToString());
             }
-        }
+        }//actual download operation
         private void reset()
         {
             listBox_Download_List.Items.Clear();
             label_progress.Text = "";
+            textBoxDownload_Location.Text = "";
             progressBar.Value = 0;
-        }
+        }//reset the form
 
         /*******************/
         /*******Events******/
@@ -132,5 +135,10 @@ namespace ytd
                 addDownloadLocation();
             }
         }
+        private void frm_YoutubeDownloader_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mainform.Show();
+            Dispose();
+        }//make sure to cleanup
     }
 }
